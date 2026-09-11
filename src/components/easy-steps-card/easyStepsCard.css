@@ -1,0 +1,52 @@
+@scope ([data-component="easystepcard"]) {
+  :scope {
+    flex: 1 1 280px;
+    max-width: 360px;
+    display: flex;
+    box-sizing: border-box;
+  }
+
+  .card-cnt {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 24px 20px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card-cnt:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-logo {
+    width: 75%;
+    max-width: 220px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 16px;
+  }
+
+  .card-content {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    text-align: center;
+    color: #334155;
+    font-weight: 500;
+  }
+
+  @media (max-width: 600px) {
+    :scope {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}

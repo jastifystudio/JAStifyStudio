@@ -1,0 +1,29 @@
+@scope ([data-component="templatetypecard"]) {
+  :scope {
+    display: flex;
+  }
+  .template-card-cnt {
+     width: 250px;
+    /* height: calc(100% - 10px); */
+    margin: 5px 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #092347;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 6px 30px rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease;
+  }
+
+  .template-card-logo {
+    height: 60px;
+    width: auto;
+  }
+
+  .template-card-content {
+    text-align: center;
+  }
+}

@@ -1,0 +1,187 @@
+@scope ([data-component="header"]) {
+  :scope {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    display: block;
+    background-color: #ffffff;
+  }
+
+  .main-cnt {
+    width: 100%;
+    height: 75px;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    position: relative;
+  }
+
+  /* Left Brand Logo & Title */
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .header-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .header-app-name {
+    font-weight: 800;
+    font-size: 22px;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+  }
+
+  /* Desktop Navigation - Centered horizontally */
+  .header-nav-desktop {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .header-section-option {
+    color: #334155;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .header-section-option:hover,
+  .header-section-option.active {
+    border-bottom: 2px solid #ff3d3c;
+    color: #ff3d3c;
+    font-weight: 600;
+  }
+
+  /* Right Section (Hamburger on mobile) */
+  .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 2;
+  }
+
+  /* Hamburger Menu Button */
+  .hamburger-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 19px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .hamburger-btn .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #092347;
+    border-radius: 4px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  /* Hamburger Animation to 'X' */
+  .hamburger-btn.is-open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger-btn.is-open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-btn.is-open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Mobile Dropdown Container */
+  .header-nav-mobile {
+    display: none;
+  }
+
+  /* ====================================================
+     Mobile & Tablet View (< 768px)
+     ==================================================== */
+  @media (max-width: 768px) {
+    .main-cnt {
+      padding: 0 20px;
+    }
+
+    /* Hide desktop nav */
+    .header-nav-desktop {
+      display: none;
+    }
+
+    /* Show hamburger */
+    .hamburger-btn {
+      display: flex;
+    }
+
+    /* Display mobile dropdown menu when rendered */
+    .header-nav-mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      background: #ffffff;
+      padding: 20px 0 25px 0;
+      border-top: 1px solid #f1f5f9;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 75px;
+      left: 0;
+      z-index: 99999;
+      animation: slideDown 0.25s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header-nav-mobile .header-section-option {
+      font-size: 16px;
+      padding: 10px 24px;
+      width: 85%;
+      text-align: center;
+      border-radius: 8px;
+      border-bottom: none;
+    }
+
+    .header-nav-mobile .header-section-option:hover,
+    .header-nav-mobile .header-section-option.active {
+      background-color: #fff1f1;
+      color: #ff3d3c;
+    }
+  }
+}

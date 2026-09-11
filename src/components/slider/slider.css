@@ -1,0 +1,164 @@
+@scope ([data-component="slider"]) {
+  .main-cnt {
+    width: 100%;
+    min-height: 70vh;
+    background-color: #092347;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 6%;
+    gap: 40px;
+    overflow: hidden;
+  }
+
+  /* Left Side: Graphic Container */
+  .slider-left-cnt {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Anchor wrapper: tightly wraps the image */
+  .hero-art-wrapper {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .hero-main-img {
+    max-height: 360px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+    display: block;
+  }
+
+  /* Anchored directly relative to hero-art-wrapper */
+  .wave-cactus-sway {
+    height: 50%;              /* Scales proportionally with the hero image */
+    width: auto;
+    position: absolute;
+    right: 2%;                /* Locks to the exact right edge of the desk/plant */
+    bottom: 24%;              /* Locks to the exact vertical level of the plant pot */
+    z-index: 0;
+    transform-origin: bottom center;
+    animation: cactus-sway 2s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes cactus-sway {
+    0% {
+      transform: rotate(-5deg);
+    }
+    100% {
+      transform: rotate(10deg);
+    }
+  }
+
+  /* Right Side: Copy & CTA */
+  .slider-right-cnt {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .slider-heading {
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.2;
+    color: #ffffff;
+    text-align: left;
+    margin: 0 0 16px 0;
+    font-weight: 800;
+  }
+
+  .slider-content {
+    color: #cbd5e1;
+    font-size: clamp(15px, 1.8vw, 19px);
+    text-align: left;
+    line-height: 1.55;
+    margin: 0 0 28px 0;
+    max-width: 520px;
+  }
+
+  .slider-button {
+    background-color: #02818c;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 13px 30px;
+    font-size: 17px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 14px rgba(2, 129, 140, 0.35);
+  }
+
+  .slider-button:hover {
+    background-color: #029ca9;
+    box-shadow: 0 6px 18px rgba(2, 129, 140, 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* Tablet Screen (< 992px) */
+  @media (max-width: 992px) {
+    .main-cnt {
+      padding: 40px 4%;
+      gap: 25px;
+    }
+
+    .hero-main-img {
+      max-height: 280px;
+    }
+  }
+
+  /* Mobile Screen (< 768px) */
+  @media (max-width: 768px) {
+    .main-cnt {
+      flex-direction: column-reverse;
+      justify-content: center;
+      padding: 35px 20px 45px 20px;
+      min-height: auto;
+      gap: 30px;
+      text-align: center;
+    }
+
+    .slider-right-cnt {
+      width: 100%;
+      align-items: center;
+    }
+
+    .slider-heading {
+      text-align: center;
+    }
+
+    .slider-content {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .slider-button {
+      width: 100%;
+      max-width: 290px;
+      font-size: 16px;
+      padding: 12px 20px;
+    }
+
+    .slider-left-cnt {
+      width: 100%;
+    }
+
+    .hero-main-img {
+      max-height: 200px;
+    }
+  }
+}
