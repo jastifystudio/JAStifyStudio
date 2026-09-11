@@ -6,6 +6,37 @@
     background-color: #f1f5f9;
 }
 
+/* Mobile View Switcher Tab Bar (Hidden on desktop) */
+.mobile-view-switcher {
+    display: none;
+    background: #092347;
+    padding: 10px 16px;
+    gap: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    z-index: 20;
+}
+
+.mobile-tab-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mobile-tab-btn.active {
+    background-color: #ff3d3c;
+    color: #ffffff;
+    border-color: #ff3d3c;
+    box-shadow: 0 4px 12px rgba(255, 61, 60, 0.35);
+}
+
 .main-inner-cnt {
     display: flex;
     flex: 1;
@@ -16,9 +47,9 @@
 
 /* Left Sidebar - Form Editor */
 .workspace-sidebar {
-    width: 560px;
+    width: 480px;
     min-width: 340px;
-    max-width: 600px;
+    max-width: 520px;
     height: 100%;
     padding: 24px;
     overflow-y: auto;
@@ -236,7 +267,6 @@
     align-items: flex-start;
     padding: 40px 20px 80px 20px;
     box-sizing: border-box;
-    /* background-color: #e2e8f0; */
     background: linear-gradient(180deg, #092347 0%, #0d356c 100%);
 }
 
@@ -252,30 +282,43 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 900px) {
-    .main-inner-cnt {
-        flex-direction: column-reverse;
-        overflow-y: auto;
+    .mobile-view-switcher {
+        display: flex;
+        flex-shrink: 0;
     }
 
-    .workspace-sidebar {
+    .main-inner-cnt {
+        position: relative;
+        flex: 1;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .workspace-sidebar,
+    .workspace-preview {
+        position: static;
         width: 100%;
         max-width: 100%;
         min-width: 100%;
-        height: auto;
-        border-right: none;
-        box-shadow: none;
-        border-top: 1px solid #e2e8f0;
+        height: 100%;
+        top: auto;
+        left: auto;
+        box-sizing: border-box;
+    }
+
+    .workspace-sidebar.mobile-hidden,
+    .workspace-preview.mobile-hidden {
+        display: none !important;
     }
 
     .workspace-preview {
         padding: 20px 10px;
-        height: auto;
-        overflow-x: auto;
+        align-items: flex-start;
     }
 
     .resume-shadow-box {
-        transform: scale(0.85);
+        transform: scale(0.72);
         transform-origin: top center;
-        margin-bottom: -150px;
+        margin-bottom: -290px;
     }
 }

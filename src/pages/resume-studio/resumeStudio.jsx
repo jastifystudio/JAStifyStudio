@@ -8,11 +8,11 @@ import html2pdf from 'html2pdf.js';
 export default function ResumeStudio() {
     const location = useLocation();
     
-    // Auto-detect template passed in URL query param: /resumeStudio?template=template2
     const queryParams = new URLSearchParams(location.search);
     const initialTemplate = queryParams.get('template') || 'template1';
 
     const [activeTemplateId, setActiveTemplateId] = useState(initialTemplate);
+    const [mobileTab, setMobileTab] = useState('editor'); // 'editor' or 'preview' for mobile view
     const [fullName, setFullName] = useState('Emma Chen');
     const [contactInfo, setContactInfo] = useState('Chicago, IL 60603 • (555) 555-5555 • emma@example.com');
     const [summary, setSummary] = useState('Dynamic professional dedicated to driving organizational growth, engineering scalable solutions, and streamlining cross-functional workflows.');
@@ -41,8 +41,8 @@ export default function ResumeStudio() {
         { id: 'acc_2', text: 'Spearheaded operational cost reduction initiative saving $25,000 annually.' }
     ]);
 
-    // Keep active template synced if user changes route query
     useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
         const tplParam = queryParams.get('template');
         if (tplParam && templates.some(t => t.id === tplParam)) {
             setActiveTemplateId(tplParam);
@@ -110,7 +110,6 @@ export default function ResumeStudio() {
         let rawHTML = activeTemplate.html;
         let rawCSS = activeTemplate.style;
 
-        // 1. Education
         let eduHTML = "";
         education.forEach(edu => {
             if (activeTemplateId === 'template3' || activeTemplateId === 'template6') {
@@ -132,7 +131,6 @@ export default function ResumeStudio() {
             }
         });
 
-        // 2. Skills
         let skillsHTML = "";
         skills.forEach(item => {
             const percentage = Math.round((item.score / 6) * 100);
@@ -157,7 +155,6 @@ export default function ResumeStudio() {
             }
         });
 
-        // 3. Work History
         let expHTML = "";
         experience.forEach(exp => {
             const lines = exp.bullets.split('\n').filter(l => l.trim() !== '');
@@ -184,7 +181,6 @@ export default function ResumeStudio() {
             }
         });
 
-        // 4. Accomplishments
         let accHTML = "";
         accomplishments.forEach(acc => {
             if (acc.text.trim() !== "") {
@@ -226,10 +222,26 @@ export default function ResumeStudio() {
     return (
         <div className="resume-studio-root">
             <Header />
+
+            {/* Mobile Switcher Bar (Only visible on screens <= 900px) */}
+            <div className="mobile-view-switcher">
+                <button 
+                    className={`mobile-tab-btn ${mobileTab === 'editor' ? 'active' : ''}`}
+                    onClick={() => setMobileTab('editor')}
+                >
+                    ✏️ Edit Details
+                </button>
+                <button 
+                    className={`mobile-tab-btn ${mobileTab === 'preview' ? 'active' : ''}`}
+                    onClick={() => setMobileTab('preview')}
+                >
+                    👁️ Preview Resume
+                </button>
+            </div>
             
             <div className="main-inner-cnt">
                 {/* Left Controls & Form Editor Sidebar */}
-                <aside className="workspace-sidebar">
+                <aside className={`workspace-sidebar ${mobileTab === 'preview' ? 'mobile-hidden' : ''}`}>
                     <div className="sidebar-header-card">
                         <label className="section-title-tag">Selected Template</label>
                         <select 
@@ -349,7 +361,7 @@ export default function ResumeStudio() {
                 </aside>
 
                 {/* Right Live Canvas Preview Section */}
-                <main className="workspace-preview">
+                <main className={`workspace-preview ${mobileTab === 'editor' ? 'mobile-hidden' : ''}`}>
                     <div
                         id="resume-capture-canvas"
                         className="resume-shadow-box"
